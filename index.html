@@ -1,30 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Android Store</title>
 
   <!-- PWA Manifest -->
   <link rel="manifest" href="manifest.json">
-
   <meta name="theme-color" content="#1e90ff">
 
-  
+  <style>
     body {
       font-family: sans-serif;
       background: #111;
       color: #fff;
       padding: 20px;
+      margin: 0;
     }
+
     h1 {
       margin-bottom: 10px;
     }
+
     .app {
       background: #222;
       padding: 15px;
       margin: 15px 0;
       border-radius: 10px;
     }
+
     .btn {
       display: inline-block;
       background: #1e90ff;
@@ -33,6 +36,17 @@
       border-radius: 6px;
       text-decoration: none;
       margin-right: 10px;
+    }
+
+    #skipBtn {
+      padding: 10px 15px;
+      background: #ff4444;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      display: none;
+      margin-top: 20px;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -50,9 +64,41 @@
     <a class="btn" href="example-versions.html">All Versions</a>
   </div>
 
+  <!-- Skip Waiting Button -->
+  <button id="skipBtn">Skip Waiting (Update App)</button>
+
   <script>
+    // Register Service Worker
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js');
+      navigator.serviceWorker.register('service-worker.js').then(reg => {
+
+        // If a new SW is already waiting, show the button
+        if (reg.waiting) {
+          showSkipButton(reg.waiting);
+        }
+
+        // Detect new service worker installation
+        reg.addEventListener('updatefound', () => {
+          const newSW = reg.installing;
+
+          newSW.addEventListener('statechange', () => {
+            if (newSW.state === 'installed' && reg.waiting) {
+              showSkipButton(reg.waiting);
+            }
+          });
+        });
+      });
+    }
+
+    // Show Skip Waiting Button
+    function showSkipButton(worker) {
+      const btn = document.getElementById('skipBtn');
+      btn.style.display = 'inline-block';
+
+      btn.onclick = () => {
+        worker.postMessage({ action: 'skipWaiting' });
+        location.reload();
+      };
     }
   </script>
 </body>
