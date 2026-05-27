@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Android Store</title>
+
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="manifest.json">
+
+  <meta name="theme-color" content="#1e90ff">
+
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #111;
+      color: #fff;
+      padding: 20px;
+    }
+    h1 {
+      margin-bottom: 10px;
+    }
+    .app {
+      background: #222;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 10px;
+    }
+    .btn {
+      display: inline-block;
+      background: #1e90ff;
+      padding: 8px 12px;
+      color: #fff;
+      border-radius: 6px;
+      text-decoration: none;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Android Store</h1>
+  <p>The best App Store for Android — fast, lightweight, and installable.</p>
+
+  <!-- Example App Card -->
+  <div class="app">
+    <h2>Example App</h2>
+    <p>Latest version: v1</p>
+
+    <a class="btn" href="apk/example-v1.apk">Download Latest</a>
+    <a class="btn" href="example-versions.html">All Versions</a>
+  </div>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js');
+    }
+  </script>
+</body>
+</html>
