@@ -1,0 +1,21 @@
+{
+  "name": "Android Store",
+  "short_name": "AStore",
+  "description": "Android Store is a lightweight, fast, and user-friendly App Store designed for Android users. It works both as a website and an installable app (PWA). Explore apps, check all versions, and download APKs directly through a clean and simple interface.",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#111111",
+  "theme_color": "#1e90ff",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
