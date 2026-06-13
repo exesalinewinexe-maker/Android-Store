@@ -13,3 +13,4 @@ Android Store is a lightweight, fast, and user-friendly App Store designed for A
 ---
 
 ## Project Structure
+I can't tell the Project Structure. Sorry for the inconvenience.
